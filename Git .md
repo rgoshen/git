@@ -7,6 +7,7 @@ A simplylearn course
 1. [Git Basics](#git-basics)
 1. [Getting Started With Git](#getting-started-with-git)
 1. [Github and Remotes](#github-and-remotes)
+1. [Branching Merging and Rebasing in Git](#branching-merging-and-rebasing-in-git)
 
 ## Git Basics
 
@@ -273,5 +274,58 @@ Scenario: User A want to modify a particular line of a file in the local repo, U
 
 - User A attempts to pull the change, git shows a conflict and suggest to resolve the conflict manually
 - To resolve conflicts manually **command:** `git merge`
+
+[back](#toc)
+
+## Branching Merging and Rebasing in Git
+
+### Branching in Git
+
+Branching is very important in Git. It helps:
+
+1. reducing errors
+1. protecting the content in the main repo
+
+Branches are separate workspaces created when you need to:
+
+- experiment or test something without impacting the main code base
+- manage releases
+- create hotfixes to the production branches
+
+#### Branches Example
+
+Main Branch is automatically created when you initialize a git repo
+
+```mermaid
+gitGraph
+    commit id: "MC1"
+    commit id: "MC2"
+    commit id: "MC3"
+    branch mybranch
+    checkout mybranch
+    commit id: "C4"
+    commit id: "C5"
+    commit id: "C6"
+    checkout main
+    merge mybranch
+    commit id: "MC4"
+```
+
+A branch is a method of requesting a new working directory and staging area.
+
+> NOTE:
+>
+> A Git branch is just a pointer to the commits; it does not change the contents of the repository.
+
+#### Branch Commands
+
+- create a new branch **command:** `git branch <branch name>`
+- list all branches in current repo **command:** `git branch`
+- switch to a branch **command:** `git checkout <branch name>`
+- merge branches **command:** `git merge <branch name>`
+
+> NOTE:
+>
+> To create a new branch and switch to it, execute: **`git checkout -b <branch name>`**
 
 [back](#toc)
