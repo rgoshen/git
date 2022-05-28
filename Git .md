@@ -6,6 +6,7 @@ A simplylearn course
 
 1. [Git Basics](#git-basics)
 1. [Getting Started With Git](#getting-started-with-git)
+1. [Github and Remotes](#github-and-remotes)
 
 
 ## Git Basics
@@ -203,3 +204,74 @@ Steps to Rename Files in Git
 2. __command:__ `git add .`
 3. __command:__ `git commit -m "renamed <filename> => <new-filename>"`
 4. __command:__ `git status`
+
+[back](#toc)
+
+## Github and Remotes
+
+### Introduction to Github
+
+#### Github Basics
+
+- Web-based Git repository hosting service
+- Web interface to upload files
+- Copies files from the local repository to the remote repository
+- Local repository aka __main__
+- Remote repository aka __origin__
+
+### Creating a Reposiotry in Github
+
+There are two protocols you can use to create a repo
+
+1. HTTPS
+1. SSH
+
+#### Steps to Create a Repository in Github using HTTPS
+
+1. Go to Github and login
+1. Create a new repository
+1. Follow Github instructions
+	1. Create a symbolic link to Github
+	1. Push from local repository to Github
+
+#### Creating a Repository in Guthub using SSH
+
+1. Ensure the local repository is ready
+1. Create an SSH key (ssh-keygen)
+1. Configure Github with SSH Public Key
+1. Create a Github repository
+1. Push from local repository to Github
+
+> NOTE:
+> 
+> The SSH key helps you create a respository without a username and password.
+
+### Pulling Commits from Github
+
+- to push changes from local (main) to remote (origin) __command:__ `git push origin main`
+
+Sometimes, files on origin (remote) may change without having come from main (local) so, you will need to pull from origin to main.
+
+- __command:__ `git pull origin main`
+
+### Managing Multiple Commits in Git
+
+Scenario: same file has been changed in the local and remote repos
+
+How does Git manage these changes?
+
+- when you attempt to push your change from the local, Git identifies the file on the remote has changed as well
+- Git will reject the push action and suggest you do a pull changes from remote
+- once the changes are pulled, the remote commit comes to the local and git will merge those cahnges in with the local changes
+- this forces an additional commit at the local which then can be pushed to the remote later
+
+### Merging File Changes in Git
+
+What are these file changes?
+
+Scenario: User A want to modify a particular line of a file in the local repo, User B want to modify the same line of the same file in the remote repo
+
+- User A attempts to pull the change, git shows a conflict and suggest to resolve the conflict manually
+- To resolve conflicts manually __command:__ `git merge`
+
+[back](#toc)
