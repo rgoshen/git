@@ -328,4 +328,18 @@ A branch is a method of requesting a new working directory and staging area.
 >
 > To create a new branch and switch to it, execute: **`git checkout -b <branch name>`**
 
+### Merging Branches in Git
+
+#### Merging Branches - Prerequisites
+
+- analyze the difference between them
+  - prevent conflicts
+  - **command:** `git diff`
+
+#### Steps to Merge Branches
+
+1. switch to the branch you want to merge to
+1. execute: **`git merge <branch name>`**
+   1. `<branch name>` is the branch you want to merge from
+
 [back](#toc)
