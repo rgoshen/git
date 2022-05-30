@@ -382,4 +382,98 @@ Normally, if Git can resolve them it will do so automatically. However, in this 
   - **command:** `git stash apply` (snapshot stays on the stash list)or
   - **command:** `git stash pop command` (snapshot is removed from the stash list once reverted to it)
 
+### Rebasing in Git
+
+#### Why Rebase?
+
+Collaboration is essential in a development environment
+
+```mermaid
+flowchart LR
+    id1((A))-->id2((1))
+    subgraph main
+    id2((1))-->id3((2))
+    id3((2))-->id4((3))
+    end
+    subgraph rebase
+    id4((3))-->id6[rebase]
+    end
+    id1((A))-->id5((B))
+```
+
+When you want to branch off from another commit (A) and start developing your own feature (B), it is likely your feature is dependant on a subsequent commit done on another branch (main). What you do is get the last commit from that branch (3). Git rebase will get used in this case.
+
+**Rebasing** if the process of moving a branch to a different commit.
+
+#### Rebase Example
+
+```mermaid
+flowchart LR
+ida((A))-->idb((B))
+idb((B))-->idd((D))
+subgraph master
+idd((D))
+end
+master-->idc((C))
+subgraph feature
+ide((E))
+end
+idc((C))-->feature
+feature-->idd((D))
+```
+
+```mermaid
+flowchart LR
+ida((A))-->idb((B))-->ide((E))-->idf((F))-->main
+subgraph feature
+idd((D))
+end
+subgraph main
+idg((G))
+end
+idb((B))-->idc((C))-->feature-->main
+```
+
+- rebase the current branch to the latest commit in main **command:** `git rebase master`
+
+#### Rebase vs Merge
+
+**Rebase** and **Merge** are designed to integrate changes across branches
+
+```mermaid
+flowchart RL
+ide((E))-->idd((D))-->idc((C))-->idb((B))-->ida((A))
+idf((F))-->idd((D))
+```
+
+Commits E & F will result in a conflict that can be resolved with either `git merge` or `git rebase`. Lets try `git merge` first.
+
+**Git Merge**
+
+```mermaid
+flowchart RL
+ide((E))-->idd((D))-->idc((C))-->idb((B))-->ida((A))
+idf((F))-->idd((D))
+idm((M))-->ide((E))
+idm((M))-->idf((F))
+```
+
+**Merge** will result in a new commit M which will inherit the changes from both commits. However, this will pollute the history and make it confusing for other developers later on.
+
+**Git Rebase**
+
+```mermaid
+flowchart RL
+ide((E))-->idd((D))-->idc((C))-->idb((B))-->ida((A))
+idf((F))-.->idd((D))
+idr((R))-->ide((E))
+idr((R))-.->idf((F))
+```
+
+In **Rebase**, commit F will completely vanishes and its contents are available in commit R. This creates a clean, straight history easily understood by future developers.
+
+> NOTE:
+>
+> Never use a **"git rebase"** on public branches.
+
 [back](#toc)
