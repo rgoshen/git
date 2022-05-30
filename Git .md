@@ -476,4 +476,17 @@ In **Rebase**, commit F will completely vanishes and its contents are available 
 >
 > Never use a **"git rebase"** on public branches.
 
+### Cloning in Git
+
+#### What is cloning?
+
+**Cloning** help in creating a copy of the repository and link it to the original repository.
+
+Accomplished in two ways
+
+1. copy the entire working directory of the original repo
+1. clone the original repo
+
+Clone takes two arguments **`<URL of the original repo>`** and **`<destination directory>`**. The duplicate repo is in sync with the original repo.
+
 [back](#toc)
