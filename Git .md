@@ -371,4 +371,15 @@ Two users change the same line in a file. One user wants to delete the line whil
 
 Normally, if Git can resolve them it will do so automatically. However, in this scenario, it has no clue so it flags the file and requests a manual resolve.
 
+### Stashing in Git
+
+#### Stashing Across Branches
+
+- revert to the last commit, without interrupting the current work **command:** `git stash`
+- records the current state of the working directory and the staging area and revert to a clean working directory
+- To query what is stashed **command:** `git stash list`
+- any user can revert to your saved snapshot (stash) and pick up where you left off
+  - **command:** `git stash apply` (snapshot stays on the stash list)or
+  - **command:** `git stash pop command` (snapshot is removed from the stash list once reverted to it)
+
 [back](#toc)
