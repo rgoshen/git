@@ -136,6 +136,8 @@ To view the changes in a file:
 >
 > To restrict the output to one line, execute: **`git log --oneline`**,
 > this will display the information is a single line.
+>
+> > Another useful command to display more readable information on oneline with multiple branches execute: **`git log --oneline --decorate --graph`**
 
 ### Tracking File Changes
 
@@ -334,12 +336,39 @@ A branch is a method of requesting a new working directory and staging area.
 
 - analyze the difference between them
   - prevent conflicts
-  - **command:** `git diff`
+  - **command:** `git diff` or `git diff <branch name>..<diff branch name>`
 
 #### Steps to Merge Branches
 
 1. switch to the branch you want to merge to
 1. execute: **`git merge <branch name>`**
    1. `<branch name>` is the branch you want to merge from
+
+### Fast Forward and Recursive Merge
+
+Git employs a merge algorithm based on the context it has to merge to
+
+**Fast Forward Merge** - Employed when you merge into a branch, the latest commit of which is your parent
+
+- When one branch has been created from a parent branch (in this case the main) and no more commits have been done to the parent branch
+- Git moves the main label to the latest commit brought from the branch
+- Used when a Hotfix is needed over the production code base to fix bugs
+
+**Recursive Merge** - Employed when dealing with multiple merge bases
+
+- When one branch has been created from a parent branch (in this case the main) and there have been more commits done to the parent branch since the creation of child branch
+- Git creates another commit on the parent branch and brings all the changes into this additional commit
+
+### Resolving Merge Conflicts in Git
+
+_Scenario:_
+
+**What causes conflicts?**
+
+Two users change the same line in a file. One user wants to delete the line while the other just wants to modify the line. Git does not have any idea how to merge these changes together, so it shows the conflict in the file.
+
+**How does Git resolve these conflicts?**
+
+Normally, if Git can resolve them it will do so automatically. However, in this scenario, it has no clue so it flags the file and requests a manual resolve.
 
 [back](#toc)
