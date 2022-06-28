@@ -64,7 +64,7 @@ A simplylearn course
     - **command:** `git config --local` or `git config`
     - saves to: `.git/config`
 
-> NOTE:
+> 📎 NOTE 📎
 >
 > Local overrides Global and Global overrides System Level.
 
@@ -86,7 +86,7 @@ Steps to Create a Git Repository
 1. **ALT:** `git init <directory-name>` combines steps 1 & 2
 1. Run git status `git status`
 
-> NOTE:
+> 📎 NOTE 📎
 >
 > **`git init`** command creates a hidden directory that stores all the metadata required for it to function.
 
@@ -122,7 +122,7 @@ Git maintains three snapshots of a file maintained in separate directories:
   - once the file is committed to the local repo, the working directory is cleaned
   - the local repo is in sync with the latest changes in the working repo
 
-> NOTE:
+> 📎 NOTE 📎
 >
 > While committing, it is important to add a message using the **-m flag**.
 > If missing, a default editor opens asking for comments.
@@ -140,7 +140,7 @@ To view the changes in a file:
     - Date
     - Commit Message
 
-> NOTE:
+> 📎 NOTE 📎
 >
 > To restrict the output to one line, execute: **`git log --oneline`**,
 > this will display the information is a single line.
@@ -150,6 +150,34 @@ To view the changes in a file:
 ### Tracking File Changes
 
 Ability to identify changes between the different versions of the same file, spread across various repos
+
+```mermaid
+flowchart LR
+  wd[WorkingDirectory] -->|$ git add|sa[StagingArea]
+  wd -->|$ git diff|sa
+  subgraph lr[LocalRepository]
+    direction TB
+    c1[Commit1]
+    c2[Commit2]
+    c3[Commit3]
+    c4[Commit4]
+  end
+  sa -->|$ git commit|lr
+  sa -->|$ git diff --staged|lr
+  h1[HEAD] -->c1
+  h2[HEAD1] -->c2
+  h3[HEAD2] -->c3
+  h4[HEAD3] -->c4
+```
+
+> 📎 NOTE 📎
+>
+> Command `git diff --staged` is similar to `git diff HEAD`
+
+> :bulb: If the number of commits increase beyond a certain count, use the
+> **hashcode** command.
+>
+> `git diff <commit hashcode>`
 
 **command:** `git diff`
 
@@ -162,14 +190,6 @@ Ability to identify changes between the different versions of the same file, spr
 Once in the local repo, the latest commit of a file is pointed to by a pointer called **HEAD**
 
 - each of the previous commits are also pointed to by a pointer called **HEADX** where X is an incremented number beginning with 1
-
-> NOTE:
->
-> Command **`git diff --staged`** is similar to **`git diff HEAD`**
-
-> If the number of commits increase beyond a certain count, use the **hashcode** command.
->
-> **command:** `git diff <commit hashcode>`
 
 ### Reverting to Earlier Commits
 
@@ -188,7 +208,7 @@ Deleting Files from Staging Area and Working Directory
   - To verify file has been removed from the staging area **command:** `git ls-files --stage`
 - Delete a file only from the staging area **command:** `git rm --cached <filename>`
 
-> NOTE:
+> 📎 NOTE 📎
 >
 > This file will be untracked as it is removed from the staging area.
 
